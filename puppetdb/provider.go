@@ -39,10 +39,6 @@ func Provider() terraform.ResourceProvider {
 			"puppetdb_node": resourcePuppetDBNode(),
 		},
 
-		DataSourcesMap: map[string]*schema.Resource{
-			"puppetdb_pql": dataSourcePQL(),
-		},
-
 		ConfigureFunc: providerConfigure,
 	}
 }
