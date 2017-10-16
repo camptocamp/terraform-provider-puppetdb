@@ -2,8 +2,11 @@ package puppetdb
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
+	"time"
 
+	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/helper/schema"
 )
 
@@ -83,11 +86,20 @@ func resourcePuppetDBNodeCreate(d *schema.ResourceData, meta interface{}) error 
 	log.Printf("[INFO] Creating PuppetDB node: %s", d.Id())
 
 	certname := d.Get("certname").(string)
-
 	client := meta.(*PuppetDBClient)
-	_, err := client.Query("query/v4/nodes/"+certname, "GET", "")
-	if err != nil {
-		return err
+
+	stateConf := &resource.StateChangeConf{
+		Pending:    []string{"found", "not found"},
+		Target:     []string{"found"},
+		Refresh:    findNode(client, certname),
+		Timeout:    10 * time.Minute,
+		Delay:      1 * time.Second,
+		MinTimeout: 3 * time.Second,
+	}
+	_, waitErr := stateConf.WaitForState()
+	if waitErr != nil {
+		return fmt.Errorf(
+			"Error waiting for node (%s) to be found: %s", certname, waitErr)
 	}
 
 	d.SetId(certname)
@@ -145,4 +157,15 @@ func resourcePuppetDBNodeDelete(d *schema.ResourceData, meta interface{}) (err e
 
 	d.SetId("")
 	return nil
+}
+
+func findNode(client *PuppetDBClient, certname string) resource.StateRefreshFunc {
+	return func() (interface{}, string, error) {
+		_, err := client.Query("query/v4/nodes/"+certname, "GET", "")
+		if err != nil {
+			return nil, "not found", nil
+		}
+
+		return nil, "found", nil
+	}
 }
