@@ -17,10 +17,6 @@ func resourcePuppetDBNode() *schema.Resource {
 		Delete: resourcePuppetDBNodeDelete,
 
 		Schema: map[string]*schema.Schema{
-			"id": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"certname": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -93,12 +89,13 @@ func resourcePuppetDBNodeCreate(d *schema.ResourceData, meta interface{}) error 
 	client := meta.(*PuppetDBClient)
 
 	stateConf := &resource.StateChangeConf{
-		Pending:    []string{"found", "not found"},
-		Target:     []string{"found"},
-		Refresh:    findNode(client, certname),
-		Timeout:    10 * time.Minute,
-		Delay:      1 * time.Second,
-		MinTimeout: 3 * time.Second,
+		Pending:        []string{"found", "not found"},
+		Target:         []string{"found"},
+		Refresh:        findNode(client, certname),
+		Timeout:        10 * time.Minute,
+		Delay:          1 * time.Second,
+		MinTimeout:     3 * time.Second,
+		NotFoundChecks: 50,
 	}
 	_, waitErr := stateConf.WaitForState()
 	if waitErr != nil {
