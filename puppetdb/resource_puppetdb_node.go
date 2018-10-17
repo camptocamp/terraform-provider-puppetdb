@@ -14,10 +14,6 @@ func resourcePuppetDBNode() *schema.Resource {
 		Delete: resourcePuppetDBNodeDelete,
 
 		Schema: map[string]*schema.Schema{
-			"id": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"certname": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
