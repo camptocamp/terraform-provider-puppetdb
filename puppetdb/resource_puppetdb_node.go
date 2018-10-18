@@ -162,11 +162,11 @@ func resourcePuppetDBNodeDelete(d *schema.ResourceData, meta interface{}) (err e
 
 func findNode(client *PuppetDBClient, certname string) resource.StateRefreshFunc {
 	return func() (interface{}, string, error) {
-		_, err := client.Query("query/v4/nodes/"+certname, "GET", "")
+		node, err := client.Query("query/v4/nodes/"+certname, "GET", "")
 		if err != nil {
 			return nil, "not found", nil
 		}
 
-		return nil, "found", nil
+		return node, "found", nil
 	}
 }
