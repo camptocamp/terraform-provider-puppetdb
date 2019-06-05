@@ -1,3 +1,9 @@
+## 1.1.1 (June 06, 2019)
+
+ENHANCEMENTS:
+
+* Use Terraform v0.12.0's API
+
 ## 1.1.0 (May 21, 2019)
 
 ENHANCEMENTS:
