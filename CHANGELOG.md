@@ -1,3 +1,7 @@
+## 1.2.0 (July 24, 2020)
+
+* Use new Terraform plugin SDK
+
 ## 1.1.1 (June 06, 2019)
 
 ENHANCEMENTS:
