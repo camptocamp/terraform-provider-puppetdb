@@ -1,6 +1,11 @@
 PuppetDB Terraform Provider
 ===========================
 
+[![Terraform Registry Version](https://img.shields.io/badge/dynamic/json?color=blue&label=registry&query=%24.version&url=https%3A%2F%2Fregistry.terraform.io%2Fv1%2Fproviders%2Fcamptocamp%2Fpuppetdb)](https://registry.terraform.io/providers/camptocamp/puppetdb)
+[![Go Report Card](https://goreportcard.com/badge/github.com/camptocamp/terraform-provider-puppetdb)](https://goreportcard.com/report/github.com/camptocamp/terraform-provider-puppetdb)
+[![Build Status](https://travis-ci.org/camptocamp/terraform-provider-puppetdb.svg?branch=master)](https://travis-ci.org/camptocamp/terraform-provider-puppetdb)
+[![By Camptocamp](https://img.shields.io/badge/by-camptocamp-fb7047.svg)](http://www.camptocamp.com)
+
 This is a Terraform provider to interact with the [PuppetDB](https://puppet.com/docs/puppetdb/latest/index.html). It allows to verify that a node was properly registered in a PuppetDB and to clean it upon decommissing the node.
 
 
