@@ -1,5 +1,6 @@
 *.dll
 *.exe
+examples
 .DS_Store
 example.tf
 terraform.tfplan
