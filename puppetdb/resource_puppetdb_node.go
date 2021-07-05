@@ -46,38 +46,6 @@ func resourcePuppetDBNode() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"catalog_timestamp": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"facts_timestamp": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"report_timestamp": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"latest_report_corrective_change": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"latest_report_hash": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"latest_report_noop": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"latest_report_noop_pending": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
-			"latest_report_status": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 		},
 	}
 }
@@ -123,14 +91,6 @@ func resourcePuppetDBNodeRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("catalog_environment", pdbResp.CatalogEnvironment)
 	d.Set("facts_environment", pdbResp.FactsEnvironment)
 	d.Set("report_environment", pdbResp.ReportEnvironment)
-	d.Set("catalog_timestamp", pdbResp.CatalogTimestamp)
-	d.Set("facts_timestamp", pdbResp.FactsTimestamp)
-	d.Set("report_timestamp", pdbResp.ReportTimestamp)
-	d.Set("latest_report_corrective_change", pdbResp.LatestReportCorrectiveChange)
-	d.Set("latest_report_hash", pdbResp.LatestReportHash)
-	d.Set("latest_report_noop", pdbResp.LatestReportNoop)
-	d.Set("latest_report_noop_pending", pdbResp.LatestReportNoopPending)
-	d.Set("latest_report_status", pdbResp.LatestReportStatus)
 
 	return nil
 }
