@@ -15,6 +15,9 @@ func resourcePuppetDBNode() *schema.Resource {
 		Create: resourcePuppetDBNodeCreate,
 		Read:   resourcePuppetDBNodeRead,
 		Delete: resourcePuppetDBNodeDelete,
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"certname": &schema.Schema{
