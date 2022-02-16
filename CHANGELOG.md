@@ -1,3 +1,7 @@
+## 1.3.0 (Feb 16, 2022)
+
+* feat: add passthrough importer
+
 ## 1.2.0 (July 24, 2020)
 
 * Use new Terraform plugin SDK
