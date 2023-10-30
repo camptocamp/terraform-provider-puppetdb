@@ -1,3 +1,7 @@
+## 2.0.0 (Oct 30, 2023)
+
+- Rewrite provider to switch from the old Terraform Plugin SDKv1 to the new Terraform Plugin Framework
+
 ## 1.3.0 (Feb 16, 2022)
 
 * feat: add passthrough importer
